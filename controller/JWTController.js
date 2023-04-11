@@ -2,7 +2,7 @@ import Jwt from "jsonwebtoken";
 import AuthUser from "../models/AuthUser.js";
 import bcrypt from "bcrypt";
 
-const saltRounds = process.env?.SALT_ROUNDS || 10;
+const saltRounds = Number(process.env?.SALT_ROUNDS) || 10;
 
 export const OldSignInUser = (req, res) => {
     //let us pretend that we validated user credentials and get the _id from DB
@@ -61,7 +61,6 @@ export const signUpUser = async (req, res) => {
         .status(201)
         .json(token);
 }
-
 
 export const getUser = (req, res) => {
     //this route is guarded by our verify token middleware

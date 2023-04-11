@@ -17,4 +17,4 @@ const AuthUserSchema = new Schema({
     },
 });
 
-export default model("AuthUser", AuthUserSchema)
+export default model("AuthUser", AuthUserSchema);
