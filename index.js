@@ -4,6 +4,7 @@ import JWTRoutes from "./routes/JWTRoutes.js";
 import verifyJWTToken from "./middlewares/verifyJWTToken.js";
 import morgan from "morgan";
 import "./db/mongooseClient.js"
+import cors from "cors";
 
 const app = Express();
 
@@ -12,6 +13,7 @@ if(process.env.NODE_ENV !== "prod"){
 }
 
 app.use(Express.json());
+app.use(cors())
 // app.use("/auth", authRouter);
 app.use("/jwt", JWTRoutes);
 

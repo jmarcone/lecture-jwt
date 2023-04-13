@@ -22,12 +22,14 @@ export const signInUser = async (req, res) => {
     //check if the user exists
     const user = await AuthUser.findOne({ email: email }).select("+password");
     if (!user)
-        return res.json({ error: "User not registered" });
+        return res.status(500).json({ error: "User not registered" });
 
     //hash the password and compare
-    const match = bcrypt.compare(password, user.password);
+    const match = await  bcrypt.compare(password, user.password);
+
+
     if (!match)
-        return res.json({ error: "wrong password!" });
+        return res.status(500).json({ error: "wrong password!" });
 
     //sign a token with the user _id
     const token = Jwt.sign({ id: user._id }, process.env.JWT_SECRET);
@@ -46,7 +48,7 @@ export const signUpUser = async (req, res) => {
     })
 
     if (exists)
-        return res.json({ error: "email exists in DB" })
+        return res.status(500).json({ error: "email exists in DB" })
     //hash password
     const hash = await bcrypt.hash(password, saltRounds);
 
