@@ -12,7 +12,7 @@ const AuthUserSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "PAssword is required!"],
+        required: [true, "Password is required!"],
         select: false
     },
 });
