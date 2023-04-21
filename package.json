@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon -r dotenv/config.js index.js",
-    "prod": "node -r dotenv/config.js index.js"
+    "prod": "node index.js"
   },
   "keywords": [],
   "author": "",
